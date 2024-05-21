@@ -15,6 +15,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="assets/css/main.css" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://cdn.tailwindcss.com'>
 	<noscript>
 		<link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 		<link rel="icon" href="/images/favicon.ico" type="image/x-icon">
@@ -499,6 +501,10 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 				<li><a href="https://www.github.com/lochan027" class="icon brands fa-github"><span
 							class="label">GitHub</span></a></li>
 			</ul>
+
+			<div>Website visit count:</div>
+  <div class="website-counter"></div>
+ <button class="button" id="reset">Reset</button>
 		</footer>
 
 	</div>
@@ -512,7 +518,28 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 	<script src="assets/js/breakpoints.min.js"></script>
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
+	<script>
+		var counterContainer = document.querySelector(".website-counter");
+var resetButton = document.querySelector("#reset");
+var visitCount = localStorage.getItem("page_view");
 
+// Check if page_view entry is present
+if (visitCount) {
+  visitCount = Number(visitCount) + 1;
+  localStorage.setItem("page_view", visitCount);
+} else {
+  visitCount = 1;
+  localStorage.setItem("page_view", 1);
+}
+counterContainer.innerHTML = visitCount;
+
+// Adding onClick event listener
+resetButton.addEventListener("click", () => {
+  visitCount = 1;
+  localStorage.setItem("page_view", 1);
+  counterContainer.innerHTML = visitCount;
+});
+	</script>
 </body>
 
 </html>
